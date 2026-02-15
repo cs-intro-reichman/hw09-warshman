@@ -42,10 +42,10 @@ public class List {
         String listString = "(";
         while (current != null) {
             CharData d = current.cp;
-            listString += ("(" + d.chr + " " + d.count + " " + d.p + " " + d.cp + ")");
+            listString += ("(" + d.chr + " " + d.count + " " + d.p + " " + d.cp + ") ");
             current = current.next;
         }
-        return listString + ")";
+        return listString.substring(0, listString.length() - 1) + ")";
     }
 
     /** Returns the index of the first CharData object in this list

@@ -45,7 +45,7 @@ public class List {
             listString += ("(" + d.chr + " " + d.count + " " + d.p + " " + d.cp + ")");
             current = current.next;
         }
-        return listString;
+        return listString + ")";
     }
 
     /** Returns the index of the first CharData object in this list

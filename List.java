@@ -86,13 +86,13 @@ public class List {
         if (index == 0) {
             this.first = this.first.next;
             this.size--;
+            return true;
         } else if (index >= 1) {
             Node current = first;
             for (int i = 0; i < index-1; i++) {
                 current = current.next;
             }
-
-            current.next = null;
+            current.next = current.next.next;
             this.size--;
 
             return true;

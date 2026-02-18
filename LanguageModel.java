@@ -114,7 +114,7 @@ public class LanguageModel {
         }
         String window = initialText.substring(initLen - windowLength);
         //while (check two things 1 is that that the window exists in the keys of CharDataMap)... get the CharData Map -> get the list corresponding to the window -> generate a random double -> get the letter in the list corresponding the double based on the cp -> append the char to generatedText -> move the window ->
-        while (CharDataMap.containsKey(window) & generatedText.length() < textLength) {
+        while (CharDataMap.containsKey(window) & generatedText.length() < textLength + initLen) {
             List probs = CharDataMap.get(window);
             char randChar = getRandomChar(probs);
             generatedText += randChar;
@@ -133,21 +133,62 @@ public class LanguageModel {
 		}
 		return str.toString();
 	}
+
     // public static void main(String[] args) {
-    //     int windowLength = Integer.parseInt(args[0]);
-    //     String initialText = args[1];
-    //     int generatedTextLength = Integer.parseInt(args[2]);
-    //     Boolean randomGeneration = args[3].equals("random");
-    //     String fileName = args[4];
-    //     // Create the LanguageModel object
-    //     LanguageModel lm;
-    //     if (randomGeneration)
-    //         lm = new LanguageModel(windowLength);
-    //     else
-    //         lm = new LanguageModel(windowLength, 20);
-    //     // Trains the model, creating the map.
-    //     lm.train(fileName);
-    //     // Generates text, and prints it.
-    //     System.out.println(lm.generate(initialText, generatedTextLength));
+    //     // Training Test
+    //     LanguageModel lang = new LanguageModel(5);
+    //    lang.train("originofspecies.txt");
+
+
+		// Testing random character
+        // LanguageModel lang = new LanguageModel(10);
+        // List myList = new List();
+
+        // for (int i = 0; i < 18; i++) {
+        //     myList.update('a');
+        // }
+        // for (int i = 0; i < 127; i++) {
+        //     myList.update('b');
+        // }
+        // for (int i = 0; i < 34; i++) {
+        //     myList.update('c');
+        // }
+        // // lang.calculateProbabilities(myList);
+        // myList.toString();
+
+        // int aCount = 0;
+        // int bCount = 0;
+        // int cCount = 0;
+        
+        // for (int i = 0; i < 500; i++) {
+        //     char chr = lang.getRandomChar(myList);
+        //     if (chr == 'a') {
+        //         aCount++;
+        //     } else if (chr == 'b') {
+        //         bCount++;
+        //     } else if (chr == 'c') {
+        //         cCount++;
+        //     }
+        // }
+
+        // System.out.println("A count was: " + aCount + ", b count was " + bCount + ", and c count was " + cCount);
+
     // }
+    public static void main(String[] args) {
+        int windowLength = Integer.parseInt(args[0]);
+        String initialText = args[1];
+        int generatedTextLength = Integer.parseInt(args[2]);
+        Boolean randomGeneration = args[3].equals("random");
+        String fileName = args[4];
+        // Create the LanguageModel object
+        LanguageModel lm;
+        if (randomGeneration)
+            lm = new LanguageModel(windowLength);
+        else
+            lm = new LanguageModel(windowLength, 20);
+        // Trains the model, creating the map.
+        lm.train(fileName);
+        // Generates text, and prints it.
+        System.out.println(lm.generate(initialText, generatedTextLength));
+    }
 }
